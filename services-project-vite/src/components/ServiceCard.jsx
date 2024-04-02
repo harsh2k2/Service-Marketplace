@@ -10,8 +10,13 @@ const ServiceCard = ({ sname }) => {
       .then((data) => setService(data));
   }, [sname]);
 
+  // Check if service_name is defined before attempting to replace spaces
+  const serviceNameWithHyphens = service.service_name
+    ? service.service_name.replace(/\s+/g, "-")
+    : "";
+
   return (
-    <Link to={`/services/${encodeURIComponent(service.service_name)}`}>
+    <Link to={`/services/${serviceNameWithHyphens}`}>
       <div className="serviceCard justify-center content-center m-4 p-4 border border-slate-950 rounded-lg">
         <h1>{service.service_name}</h1>
         <img

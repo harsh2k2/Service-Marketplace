@@ -25,7 +25,7 @@ db.connect((err) => {
 
 app.get("/api/services/:sname", (req, res) => {
   const sql = "SELECT * FROM service WHERE service_name = ?";
-  const sname = decodeURIComponent(req.params.sname);
+  const sname = decodeURIComponent(req.params.sname).replace(/-/g, " ");
   // console.log("Fetching service details for name:", sname);
   db.query(sql, [sname], (err, results) => {
     if (err) throw err;

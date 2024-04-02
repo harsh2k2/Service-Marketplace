@@ -7,7 +7,12 @@ const ServiceDetails = () => {
 
   useEffect(() => {
     console.log("Fetching service details for name:", sname);
-    fetch(`http://localhost:8800/api/services/${encodeURIComponent(sname)}`)
+    fetch(
+      `http://localhost:8800/api/services/${encodeURIComponent(sname).replace(
+        /%20/g,
+        "-"
+      )}`
+    )
       .then((response) => response.json())
       .then((data) => {
         console.log("Service details:", data);

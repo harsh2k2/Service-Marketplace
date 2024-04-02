@@ -16,7 +16,7 @@ const ServiceDropdown = () => {
       <ul className="bg-indigo-300">
         {services.map((service) => (
           <li key={service.service_id}>
-            <Link to={`/services/${encodeURIComponent(service.service_name)}`}>
+            <Link to={`/services/${service.service_name.replace(/\s+/g, "-")}`}>
               {service.service_name}
             </Link>
           </li>
