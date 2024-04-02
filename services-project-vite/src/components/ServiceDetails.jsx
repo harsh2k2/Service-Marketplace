@@ -16,9 +16,13 @@ const ServiceDetails = () => {
   }, [sname]);
 
   return (
-    <div>
-      <h1 className="text-center">{service.service_name} </h1>
-      <p className="text-center">{service.full_description} </p>
+    <div className="flex flex-col items-center justify-center">
+      <h1>{service.service_name} </h1>
+      <p>{service.full_description} </p>
+      <br />
+      <button className="px-4 py-3 text-white duration-100 bg-indigo-600 rounded-lg shadow-md focus:shadow-none ring-offset-2 ring-indigo-600 focus:ring-2">
+        Get a quote
+      </button>
     </div>
   );
 };
