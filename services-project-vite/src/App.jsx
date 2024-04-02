@@ -3,7 +3,6 @@ import Header from "./components/Header.jsx";
 import Body from "./components/Body.jsx";
 import About from "./components/About.jsx";
 import Contact from "./components/Contact.jsx";
-
 import Error from "./components/Error.jsx";
 import Footer from "./components/Footer.jsx";
 import ServiceDetails from "./components/ServiceDetails.jsx";
@@ -31,7 +30,6 @@ const appRouter = createBrowserRouter([
         path: "/about",
         element: <About />,
       },
-
       {
         path: "/contact",
         element: <Contact />,
