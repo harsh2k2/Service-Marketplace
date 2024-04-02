@@ -2,14 +2,18 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 const ServiceDetails = () => {
-  const { id } = useParams();
+  const { sname } = useParams();
   const [service, setService] = useState({});
 
   useEffect(() => {
-    fetch(`http://localhost:8800/api/services/${id}`)
+    console.log("Fetching service details for name:", sname);
+    fetch(`http://localhost:8800/api/services/${encodeURIComponent(sname)}`)
       .then((response) => response.json())
-      .then((data) => setService(data));
-  }, [id]);
+      .then((data) => {
+        console.log("Service details:", data);
+        setService(data);
+      });
+  }, [sname]);
 
   return (
     <div>
