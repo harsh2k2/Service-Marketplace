@@ -35,7 +35,7 @@ const appRouter = createBrowserRouter([
         element: <Contact />,
       },
       {
-        path: "/services/:id",
+        path: "/services/:sname",
         element: <ServiceDetails />,
       },
     ],
@@ -43,7 +43,6 @@ const appRouter = createBrowserRouter([
   },
 ]);
 
-// Wrap your application with RouterProvider
 const App = () => {
   return (
     <RouterProvider router={appRouter}>
