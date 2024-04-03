@@ -38,6 +38,10 @@ const appRouter = createBrowserRouter([
         path: "/services/:sname",
         element: <ServiceDetails />,
       },
+      {
+        path: "/contact/service/:serviceName",
+        element: <Contact />,
+      },
     ],
     // errorElement: <Error />,
   },

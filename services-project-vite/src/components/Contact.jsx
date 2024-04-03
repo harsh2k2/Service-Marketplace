@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const Contact = () => {
   const initialValues = { fullname: "", email: "", phone: "", message: "" };
@@ -9,20 +9,10 @@ const Contact = () => {
 
   const [services, setServices] = useState([]);
 
-  // const { service: selectedService } = useParams();
-  // console.log("Selected service from URL:", selectedService);
-
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const selectedService = decodeURIComponent(queryParams.get("service"));
+  const { serviceName } = useParams();
+  const selectedService = serviceName ? serviceName.replace(/-/g, " ") : "";
 
   console.log("Selected service from URL:", selectedService);
-
-  // useEffect(() => {
-  //   fetch("http://localhost:8800/api/services")
-  //     .then((response) => response.json())
-  //     .then((data) => setServices(data));
-  // }, []);
 
   useEffect(() => {
     fetch("http://localhost:8800/api/services")
@@ -38,7 +28,7 @@ const Contact = () => {
           });
         }
       });
-  }, [selectedService]); // Add selectedService as a dependency
+  }, [selectedService]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;

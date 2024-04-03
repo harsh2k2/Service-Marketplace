@@ -9,7 +9,13 @@ const ServiceDetails = () => {
 
   const handleGetQuote = () => {
     console.log("Navigating to contact with service:", service.service_name);
-    navigate(`/contact?service=${encodeURIComponent(service.service_name)}`);
+    // In ServiceDetails.jsx or wherever you're navigating
+    navigate(
+      `/contact/service/${encodeURIComponent(service.service_name).replace(
+        /%20/g,
+        "-"
+      )}`
+    );
   };
 
   useEffect(() => {
