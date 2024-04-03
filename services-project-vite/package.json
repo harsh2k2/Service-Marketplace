@@ -9,7 +9,7 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
-  "dependencies": {
+  "dependencies": {    
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.4",
     "prop-types": "^15.8.1",

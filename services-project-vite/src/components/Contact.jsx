@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useParams, useLocation } from "react-router-dom";
 
 const Contact = () => {
   const initialValues = { fullname: "", email: "", phone: "", message: "" };
@@ -6,9 +7,43 @@ const Contact = () => {
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
 
+  const [services, setServices] = useState([]);
+
+  // const { service: selectedService } = useParams();
+  // console.log("Selected service from URL:", selectedService);
+
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const selectedService = decodeURIComponent(queryParams.get("service"));
+
+  console.log("Selected service from URL:", selectedService);
+
+  // useEffect(() => {
+  //   fetch("http://localhost:8800/api/services")
+  //     .then((response) => response.json())
+  //     .then((data) => setServices(data));
+  // }, []);
+
+  useEffect(() => {
+    fetch("http://localhost:8800/api/services")
+      .then((response) => response.json())
+      .then((data) => {
+        setServices(data);
+        // Check if a service was selected from the URL
+        if (selectedService) {
+          // Update the form values to include the selected service
+          setFormValues({
+            ...formValues,
+            service: selectedService,
+          });
+        }
+      });
+  }, [selectedService]); // Add selectedService as a dependency
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
+    console.log("Selected service:", formValues.service);
   };
 
   // const handleSubmit = (e) => {
@@ -17,13 +52,18 @@ const Contact = () => {
   //   setFormErrors(validate(formValues));
   //   setIsSubmit(true);
   // };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const errors = validate(formValues);
     setFormErrors(errors);
     if (Object.keys(errors).length === 0) {
-      // Proceed to insert data into the database
-      await insertContactData(formValues);
+      // Include the service_name in the formValues before sending
+      const dataToSend = {
+        ...formValues,
+        service_name: formValues.service,
+      };
+      await insertContactData(dataToSend);
       setIsSubmit(true);
     }
   };
@@ -126,23 +166,23 @@ const Contact = () => {
           </div>
           <div className="flex-1 mt-12 sm:max-w-lg lg:max-w-md">
             <form onSubmit={handleSubmit} className="space-y-5">
-              <div className="relative w-72 max-w-full mx-auto mt-12">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="absolute top-0 bottom-0 w-5 h-5 my-auto text-gray-400 right-3"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
+              <div>
+                <select
+                  name="service"
+                  value={formValues.service || selectedService || ""} // Ensure this is controlled, default to empty string if no service is selected
+                  onChange={handleChange}
+                  className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
                 >
-                  <path
-                    fillRule="evenodd"
-                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                <select className="w-full mt-2 px-3 py-2 text-sm text-gray-600 bg-white border rounded-lg shadow-sm outline-none appearance-none focus:ring-offset-2 focus:ring-indigo-600 focus:ring-2">
-                  <option>Select Service</option>
-                  <option>Service 1</option>
-                  <option>Service 2</option>
+                  <option value="">Select a service</option>
+                  {/* Placeholder option */}
+                  {services.map((service) => (
+                    <option
+                      key={service.service_id}
+                      value={service.service_name}
+                    >
+                      {service.service_name}
+                    </option>
+                  ))}
                 </select>
               </div>
               <div>

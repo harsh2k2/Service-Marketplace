@@ -1,9 +1,16 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 const ServiceDetails = () => {
   const { sname } = useParams();
   const [service, setService] = useState({});
+
+  const navigate = useNavigate();
+
+  const handleGetQuote = () => {
+    console.log("Navigating to contact with service:", service.service_name);
+    navigate(`/contact?service=${encodeURIComponent(service.service_name)}`);
+  };
 
   useEffect(() => {
     console.log("Fetching service details for name:", sname);
@@ -20,7 +27,10 @@ const ServiceDetails = () => {
       <h1>{service.service_name} </h1>
       <p>{service.full_description} </p>
       <br />
-      <button className="px-4 py-3 text-white duration-100 bg-indigo-600 rounded-lg shadow-md focus:shadow-none ring-offset-2 ring-indigo-600 focus:ring-2">
+      <button
+        onClick={handleGetQuote}
+        className="px-4 py-3 text-white duration-100 bg-indigo-600 rounded-lg shadow-md focus:shadow-none ring-offset-2 ring-indigo-600 focus:ring-2"
+      >
         Get a quote
       </button>
     </div>

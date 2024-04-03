@@ -41,15 +41,31 @@ app.get("/api/services", (req, res) => {
   });
 });
 
+// app.post("/api/contact", (req, res) => {
+//   const { fullname, email, phone, message } = req.body;
+//   const contact_date = new Date().toISOString().slice(0, 10); // Get current date in YYYY-MM-DD format
+
+//   const sql =
+//     "INSERT INTO contact (contact_name, contact_email, contact_phone, contact_date, message) VALUES (?, ?, ?, ?, ?)";
+//   db.query(
+//     sql,
+//     [fullname, email, phone, contact_date, message],
+//     (err, results) => {
+//       if (err) throw err;
+//       res.json({ success: true });
+//     }
+//   );
+// });
+
 app.post("/api/contact", (req, res) => {
-  const { fullname, email, phone, message } = req.body;
+  const { fullname, email, phone, message, service_name } = req.body;
   const contact_date = new Date().toISOString().slice(0, 10); // Get current date in YYYY-MM-DD format
 
   const sql =
-    "INSERT INTO contact (contact_name, contact_email, contact_phone, contact_date, message) VALUES (?, ?, ?, ?, ?)";
+    "INSERT INTO contact (contact_name, contact_email, contact_phone, contact_date, message, service_name) VALUES (?, ?, ?, ?, ?, ?)";
   db.query(
     sql,
-    [fullname, email, phone, contact_date, message],
+    [fullname, email, phone, contact_date, message, service_name],
     (err, results) => {
       if (err) throw err;
       res.json({ success: true });
