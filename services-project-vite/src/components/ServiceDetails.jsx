@@ -33,6 +33,12 @@ const ServiceDetails = () => {
       <h1>{service.service_name} </h1>
       <p>{service.full_description} </p>
       <br />
+      {/* <img
+        className="size-40"
+        src={service.image_path}
+        alt={service.service_name}
+      /> */}
+
       <button
         onClick={handleGetQuote}
         className="px-4 py-3 text-white duration-100 bg-indigo-600 rounded-lg shadow-md focus:shadow-none ring-offset-2 ring-indigo-600 focus:ring-2"

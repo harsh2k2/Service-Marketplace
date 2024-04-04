@@ -6,6 +6,7 @@ import Contact from "./components/Contact.jsx";
 import Error from "./components/Error.jsx";
 import Footer from "./components/Footer.jsx";
 import ServiceDetails from "./components/ServiceDetails.jsx";
+import Admin from "./components/Admin.jsx";
 
 const AppLayout = () => {
   return (
@@ -41,6 +42,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/contact/service/:serviceName",
         element: <Contact />,
+      },
+      {
+        path: "/admin",
+        element: <Admin />,
       },
     ],
     // errorElement: <Error />,

@@ -7,6 +7,7 @@ const port = 8800;
 
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Connect to MySQL
 db.connect((err) => {
@@ -40,22 +41,6 @@ app.get("/api/services", (req, res) => {
     res.json(results);
   });
 });
-
-// app.post("/api/contact", (req, res) => {
-//   const { fullname, email, phone, message } = req.body;
-//   const contact_date = new Date().toISOString().slice(0, 10); // Get current date in YYYY-MM-DD format
-
-//   const sql =
-//     "INSERT INTO contact (contact_name, contact_email, contact_phone, contact_date, message) VALUES (?, ?, ?, ?, ?)";
-//   db.query(
-//     sql,
-//     [fullname, email, phone, contact_date, message],
-//     (err, results) => {
-//       if (err) throw err;
-//       res.json({ success: true });
-//     }
-//   );
-// });
 
 app.post("/api/contact", (req, res) => {
   const { fullname, email, phone, message, service_name } = req.body;
