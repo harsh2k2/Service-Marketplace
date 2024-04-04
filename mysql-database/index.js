@@ -58,6 +58,36 @@ app.post("/api/contact", (req, res) => {
   );
 });
 
+app.post("/api/services", (req, res) => {
+  const { service_name, image_path, description, full_description } = req.body;
+  const isActive = true;
+  const date_created = new Date().toISOString().slice(0, 10); // Get current date in YYYY-MM-DD format
+
+  const sql =
+    "INSERT INTO service (service_name, image_path, description, full_description, isActive, date_created) VALUES (?, ?, ?, ?, ?, ?)";
+  db.query(
+    sql,
+    [
+      service_name,
+      image_path,
+      description,
+      full_description,
+      isActive,
+      date_created,
+    ],
+    (err, results) => {
+      if (err) {
+        console.error(err);
+        res
+          .status(500)
+          .json({ error: "An error occurred while inserting the service." });
+      } else {
+        res.json({ success: true, message: "Service added successfully." });
+      }
+    }
+  );
+});
+
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
