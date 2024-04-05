@@ -10,22 +10,20 @@ const ServiceListingForm = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    const serviceData = {
-      service_name: data["Service Name"],
-      // image_path: data["Image Path"],
-      image_path: imageName,
-      description: data["Description"],
-      full_description: data["Full Description"],
-      // isActive: true,
-      // date_created: new Date().toISOString().slice(0, 10),
-    };
+    const formData = new FormData();
 
+    formData.append("image", file);
+
+    formData.append("service_name", data["Service Name"]);
+    formData.append("description", data["Description"]);
+    formData.append("full_description", data["Full Description"]);
+    // formData.append("isActive", true);
+    // formData.append("date_created", new Date().toISOString().slice(0, 10));
+
+    // Send the FormData instance to the server
     fetch("http://localhost:8800/api/services", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(serviceData),
+      body: formData,
     })
       .then((response) => response.json())
       .then((data) => {
@@ -44,34 +42,35 @@ const ServiceListingForm = () => {
 
   const [file, setFile] = useState();
 
-  const [imageName, setImageName] = useState("");
-
   const handleFile = (e) => {
     setFile(e.target.files[0]);
   };
-  const handleUpload = () => {
-    const formdata = new FormData();
-    formdata.append("image", file);
-    // using fetch
-    fetch("http://localhost:8800/api/upload", {
-      method: "POST",
-      body: formdata,
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        setImageName(data.imageName); // set the image name to state
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
 
-    // // using axios
-    // axios
-    // .post("http://localhost:8800/api/upload", formdata)
-    // .then((res) => console.log(res))
-    // .catch((err) => console.error(err));
-  };
+  // const [imageName, setImageName] = useState("");
+
+  // const handleUpload = () => {
+  //   const formdata = new FormData();
+  //   formdata.append("image", file);
+  //   // using fetch
+  //   fetch("http://localhost:8800/api/upload", {
+  //     method: "POST",
+  //     body: formdata,
+  //   })
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       console.log(data);
+  //       setImageName(data.imageName); // set the image name to state
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error:", error);
+  //     });
+
+  //   // // using axios
+  //   // axios
+  //   // .post("http://localhost:8800/api/upload", formdata)
+  //   // .then((res) => console.log(res))
+  //   // .catch((err) => console.error(err));
+  // };
 
   return (
     <main className="py-14">
@@ -110,7 +109,7 @@ const ServiceListingForm = () => {
                   onChange={handleFile}
                   className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
                 />
-                <button onClick={handleUpload}>Upload</button>
+                {/* <button onClick={handleUpload}>Upload</button> */}
               </div>
             </div>
             <div>

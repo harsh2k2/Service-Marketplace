@@ -60,10 +60,28 @@ app.post("/api/contact", (req, res) => {
   );
 });
 
-app.post("/api/services", (req, res) => {
-  const { service_name, image_path, description, full_description } = req.body;
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "../services-project-vite/src/assets/images/service");
+  },
+  filename: (req, file, cb) => {
+    cb(
+      null,
+      file.fieldname + "_" + Date.now() + path.extname(file.originalname)
+    );
+  },
+});
+
+const upload = multer({
+  storage: storage,
+});
+
+app.post("/api/services", upload.single("image"), (req, res) => {
+  const { service_name, description, full_description } = req.body;
   const isActive = true;
   const date_created = new Date().toISOString().slice(0, 10); // Get current date in YYYY-MM-DD format
+
+  const image_path = req.file.filename; // Get the image name from the uploaded file
 
   const sql =
     "INSERT INTO service (service_name, image_path, description, full_description, isActive, date_created) VALUES (?, ?, ?, ?, ?, ?)";
@@ -90,26 +108,10 @@ app.post("/api/services", (req, res) => {
   );
 });
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "../services-project-vite/src/assets/images/service");
-  },
-  filename: (req, file, cb) => {
-    cb(
-      null,
-      file.fieldname + "_" + Date.now() + path.extname(file.originalname)
-    );
-  },
-});
-
-const upload = multer({
-  storage: storage,
-});
-
-app.post("/api/upload", upload.single("image"), (req, res) => {
-  console.log(req.file);
-  res.json({ imageName: req.file.filename });
-});
+// app.post("/api/upload", upload.single("image"), (req, res) => {
+//   console.log(req.file);
+//   res.json({ imageName: req.file.filename });
+// });
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
