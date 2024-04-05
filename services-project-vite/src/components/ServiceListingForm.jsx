@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
+// import axios from "axios";
 
 const ServiceListingForm = () => {
   const {
@@ -39,6 +41,34 @@ const ServiceListingForm = () => {
 
   console.log(errors);
 
+  const [file, setFile] = useState();
+
+  const handleFile = (e) => {
+    setFile(e.target.files[0]);
+  };
+  const handleUpload = () => {
+    const formdata = new FormData();
+    formdata.append("image", file);
+    // using fetch
+    fetch("http://localhost:8800/api/upload", {
+      method: "POST",
+      body: formdata,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+
+    // // using axios
+    // axios
+    // .post("http://localhost:8800/api/upload", formdata)
+    // .then((res) => console.log(res))
+    // .catch((err) => console.error(err));
+  };
+
   return (
     <main className="py-14">
       <div className="max-w-screen-xl mx-auto px-4 text-gray-600 md:px-8">
@@ -73,8 +103,10 @@ const ServiceListingForm = () => {
                 <input
                   type="file"
                   name="image"
+                  onChange={handleFile}
                   className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
                 />
+                <button onClick={handleUpload}>Upload</button>
               </div>
             </div>
             <div>

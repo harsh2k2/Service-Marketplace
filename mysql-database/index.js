@@ -1,6 +1,8 @@
 import express from "express";
 import cors from "cors";
 import { db } from "./db.js";
+import multer from "multer";
+import path from "path";
 
 const app = express();
 const port = 8800;
@@ -86,6 +88,26 @@ app.post("/api/services", (req, res) => {
       }
     }
   );
+});
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "../services-project-vite/src/assets/images/service");
+  },
+  filename: (req, file, cb) => {
+    cb(
+      null,
+      file.fieldname + "_" + Date.now() + path.extname(file.originalname)
+    );
+  },
+});
+
+const upload = multer({
+  storage: storage,
+});
+
+app.post("/api/upload", upload.single("image"), (req, res) => {
+  console.log(req.file);
 });
 
 app.listen(port, () => {
