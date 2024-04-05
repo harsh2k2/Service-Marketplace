@@ -3,6 +3,7 @@ import cors from "cors";
 import { db } from "./db.js";
 import multer from "multer";
 import path from "path";
+import sharp from "sharp";
 
 const app = express();
 const port = 8800;
@@ -25,6 +26,14 @@ db.connect((err) => {
 //     res.json(results[0]);
 //   });
 // });
+
+app.get("/api/services/firstfour", (req, res) => {
+  const sql = "SELECT * FROM service ORDER BY service_id LIMIT 4";
+  db.query(sql, (err, results) => {
+    if (err) throw err;
+    res.json(results);
+  });
+});
 
 app.get("/api/services/:sname", (req, res) => {
   const sql = "SELECT * FROM service WHERE service_name = ?";
@@ -60,15 +69,14 @@ app.post("/api/contact", (req, res) => {
   );
 });
 
+const img_date = Date.now();
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "../services-project-vite/src/assets/images/service");
   },
   filename: (req, file, cb) => {
-    cb(
-      null,
-      file.fieldname + "_" + Date.now() + path.extname(file.originalname)
-    );
+    cb(null, file.fieldname + "_" + img_date + path.extname(file.originalname));
   },
 });
 
@@ -82,6 +90,34 @@ app.post("/api/services", upload.single("image"), (req, res) => {
   const date_created = new Date().toISOString().slice(0, 10); // Get current date in YYYY-MM-DD format
 
   const image_path = req.file.filename; // Get the image name from the uploaded file
+
+  try {
+    sharp(req.file.path)
+      .resize(200, 200)
+      .toFile(
+        "../services-project-vite/src/assets/images/service/" +
+          "thumbnails-" +
+          req.file.fieldname +
+          "_" +
+          img_date +
+          path.extname(req.file.originalname),
+        (err, resizeImage) => {
+          if (err) {
+            console.log(err);
+            return res
+              .status(500)
+              .json({ error: "An error occurred while resizing the image." });
+          } else {
+            console.log(resizeImage);
+          }
+        }
+      );
+  } catch (error) {
+    console.error(error);
+    return res
+      .status(500)
+      .json({ error: "An error occurred while processing the image." });
+  }
 
   const sql =
     "INSERT INTO service (service_name, image_path, description, full_description, isActive, date_created) VALUES (?, ?, ?, ?, ?, ?)";
