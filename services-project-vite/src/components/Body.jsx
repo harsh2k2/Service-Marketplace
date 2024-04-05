@@ -1,6 +1,15 @@
+import React, { useEffect, useState } from "react";
 import ServiceCard from "./ServiceCard";
 
 const Body = () => {
+  const [services, setServices] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:8800/api/services/firstfour")
+      .then((response) => response.json())
+      .then((data) => setServices(data));
+  }, []);
+
   return (
     <div>
       <img
@@ -9,10 +18,9 @@ const Body = () => {
       />
       <h1 className="text-3xl font-bold text-center my-4">Our Services</h1>
       <div className="ServiceCards grid grid-cols-4 gap-4">
-        <ServiceCard sname={"Plumbing Services"} />
-        <ServiceCard sname={"Electrical Services"} />
-        <ServiceCard sname={"Roofing Services"} />
-        <ServiceCard sname={"HVAC Services"} />
+        {services.map((service) => (
+          <ServiceCard key={service.service_id} sname={service.service_name} />
+        ))}
       </div>
     </div>
   );
