@@ -17,7 +17,7 @@ const ServiceCard = ({ sname }) => {
 
   return (
     <Link to={`/services/${service.service_name.replace(/\s+/g, "-")}`}>
-      <div className="serviceCard justify-center content-center m-4 p-4 border border-slate-950 rounded-lg">
+      <div className="serviceCard m-4 p-4 border border-slate-950 rounded-lg flex flex-col items-center">
         <h1>{service.service_name}</h1>
         <img
           className="size-40"
