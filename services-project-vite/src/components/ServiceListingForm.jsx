@@ -12,11 +12,12 @@ const ServiceListingForm = () => {
   const onSubmit = (data) => {
     const serviceData = {
       service_name: data["Service Name"],
-      image_path: data["Image Path"],
+      // image_path: data["Image Path"],
+      image_path: imageName,
       description: data["Description"],
       full_description: data["Full Description"],
-      isActive: true,
-      date_created: new Date().toISOString().slice(0, 10),
+      // isActive: true,
+      // date_created: new Date().toISOString().slice(0, 10),
     };
 
     fetch("http://localhost:8800/api/services", {
@@ -43,6 +44,8 @@ const ServiceListingForm = () => {
 
   const [file, setFile] = useState();
 
+  const [imageName, setImageName] = useState("");
+
   const handleFile = (e) => {
     setFile(e.target.files[0]);
   };
@@ -57,6 +60,7 @@ const ServiceListingForm = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
+        setImageName(data.imageName); // set the image name to state
       })
       .catch((error) => {
         console.error("Error:", error);

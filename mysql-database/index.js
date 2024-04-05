@@ -108,6 +108,7 @@ const upload = multer({
 
 app.post("/api/upload", upload.single("image"), (req, res) => {
   console.log(req.file);
+  res.json({ imageName: req.file.filename });
 });
 
 app.listen(port, () => {

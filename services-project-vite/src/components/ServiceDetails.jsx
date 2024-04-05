@@ -33,11 +33,11 @@ const ServiceDetails = () => {
       <h1>{service.service_name} </h1>
       <p>{service.full_description} </p>
       <br />
-      {/* <img
+      <img
         className="size-40"
-        src={service.image_path}
+        src={"../src/assets/images/service/" + service.image_path}
         alt={service.service_name}
-      /> */}
+      />
 
       <button
         onClick={handleGetQuote}
