@@ -10,7 +10,7 @@ open folder in vscode
 
 **in terminal:**
 
-cd mysql-database
+cd backend
 
 npm i
 
