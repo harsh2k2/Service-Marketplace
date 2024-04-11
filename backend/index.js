@@ -103,8 +103,7 @@ app.post("/api/services", upload.single("image"), (req, res) => {
       .toFile(
         "../services-project-vite/src/assets/images/service/" +
           "thumbnails-" +
-          image_path +
-          path.extname(req.file.originalname),
+          image_path,
         (err, resizeImage) => {
           if (err) {
             console.log(err);

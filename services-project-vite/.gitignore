@@ -13,7 +13,6 @@ dist-ssr
 *.local
 
 
-src/assets/images/service/*
 
 # Editor directories and files
 .vscode/*
@@ -25,3 +24,5 @@ src/assets/images/service/*
 *.njsproj
 *.sln
 *.sw?
+
+src/assets/images/service/*
