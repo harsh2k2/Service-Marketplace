@@ -6,16 +6,15 @@ unzip it
 
 open folder in vscode
 
-*add services_databse.sql in MySQL Workbench.*
+_add services_databse.sql in MySQL Workbench._
 
 **in terminal:**
 
-cd mysql-database
+cd backend
 
 npm i
 
 nodemon index.js
-
 
 **in another terminal:**
 
