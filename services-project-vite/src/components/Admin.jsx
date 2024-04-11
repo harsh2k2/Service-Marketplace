@@ -1,7 +1,13 @@
+import ContactResponses from "./ContactResponses";
 import ServiceListingForm from "./ServiceListingForm";
 
 const Admin = () => {
-  return <ServiceListingForm />;
+  return (
+    <div>
+      <ServiceListingForm />
+      <ContactResponses />
+    </div>
+  );
 };
 
 export default Admin;

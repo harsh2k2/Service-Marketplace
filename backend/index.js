@@ -69,6 +69,14 @@ app.post("/api/contact", (req, res) => {
   );
 });
 
+app.get("/api/contact/responses", (req, res) => {
+  const sql = "SELECT * FROM contact";
+  db.query(sql, (err, results) => {
+    if (err) throw err;
+    res.json(results);
+  });
+});
+
 // const img_date = Date.now();
 
 const storage = multer.diskStorage({
