@@ -91,9 +91,6 @@ const ServiceListingForm = () => {
                   {...register("Service Name", { required: true })}
                   className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
                 />
-                {errors["Service Name"] && (
-                  <span className="text-red-500">This field is required</span>
-                )}
               </div>
               {/* <div>
                 <label className="font-medium">Image Path</label>
@@ -110,12 +107,8 @@ const ServiceListingForm = () => {
                   type="file"
                   name="image"
                   onChange={handleFile}
-                  {...register("image", { required: true })}
                   className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
                 />
-                {errors.image && (
-                  <span className="text-red-500">This field is required</span>
-                )}
                 {/* <button onClick={handleUpload}>Upload</button> */}
               </div>
             </div>
@@ -127,9 +120,6 @@ const ServiceListingForm = () => {
                 {...register("Description", { required: true })}
                 className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
               />
-              {errors["Description"] && (
-                <span className="text-red-500">This field is required</span>
-              )}
             </div>
             <div>
               <label className="font-medium">Full Description</label>
@@ -138,9 +128,6 @@ const ServiceListingForm = () => {
                 {...register("Full Description", { required: true })}
                 className="w-full mt-2 h-36 px-3 py-2 resize-none appearance-none bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
               ></textarea>
-              {errors["Full Description"] && (
-                <span className="text-red-500">This field is required</span>
-              )}
             </div>
 
             <input
