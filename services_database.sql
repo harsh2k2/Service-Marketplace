@@ -1,7 +1,9 @@
+drop database services;
+
 create database services;
 use services;
 
-drop database services;
+
 
 create table service(
 service_id int primary key auto_increment,
