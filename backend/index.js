@@ -94,8 +94,8 @@ app.post("/api/services", upload.single("image"), (req, res) => {
 
   const image_path = req.file.filename; // Get the image name from the uploaded file
 
-  console.log("req.file.path:", req.file.path);
-  console.log("req.file.filename:", req.file.filename);
+  // console.log("req.file.path:", req.file.path);
+  // console.log("req.file.filename:", req.file.filename);
 
   try {
     sharp(req.file.path)

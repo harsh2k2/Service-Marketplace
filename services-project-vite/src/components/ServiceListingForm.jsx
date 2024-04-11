@@ -7,6 +7,7 @@ const ServiceListingForm = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
 
   const onSubmit = (data) => {
@@ -29,6 +30,7 @@ const ServiceListingForm = () => {
       .then((data) => {
         if (data.success) {
           console.log("Service added successfully.");
+          reset();
         } else {
           console.error("An error occurred while adding the service.");
         }
