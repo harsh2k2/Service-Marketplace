@@ -69,14 +69,17 @@ app.post("/api/contact", (req, res) => {
   );
 });
 
-const img_date = Date.now();
+// const img_date = Date.now();
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "../services-project-vite/src/assets/images/service");
   },
   filename: (req, file, cb) => {
-    cb(null, file.fieldname + "_" + img_date + path.extname(file.originalname));
+    cb(
+      null,
+      file.fieldname + "_" + Date.now() + path.extname(file.originalname)
+    );
   },
 });
 
@@ -91,15 +94,16 @@ app.post("/api/services", upload.single("image"), (req, res) => {
 
   const image_path = req.file.filename; // Get the image name from the uploaded file
 
+  console.log("req.file.path:", req.file.path);
+  console.log("req.file.filename:", req.file.filename);
+
   try {
     sharp(req.file.path)
       .resize(200, 200)
       .toFile(
         "../services-project-vite/src/assets/images/service/" +
           "thumbnails-" +
-          req.file.fieldname +
-          "_" +
-          img_date +
+          image_path +
           path.extname(req.file.originalname),
         (err, resizeImage) => {
           if (err) {
