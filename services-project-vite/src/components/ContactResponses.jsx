@@ -16,7 +16,11 @@ const ContactResponses = () => {
 
   return (
     <div>
-      <h1 className="text-center font-bold">Contact Form Responses</h1>
+      <div className="max-w-lg mx-auto space-y-3 sm:text-center">
+        <h3 className="text-indigo-600 font-semibold">
+          Contact Form Responses
+        </h3>
+      </div>
       <br />
 
       <table className="min-w-full divide-y divide-gray-200">

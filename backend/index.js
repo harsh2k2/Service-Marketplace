@@ -28,7 +28,8 @@ db.connect((err) => {
 // });
 
 app.get("/api/services/firstfour", (req, res) => {
-  const sql = "SELECT * FROM service ORDER BY service_id LIMIT 4";
+  const sql =
+    "SELECT * FROM service WHERE isActive = 1 ORDER BY service_id LIMIT 4";
   db.query(sql, (err, results) => {
     if (err) throw err;
     res.json(results);
@@ -45,8 +46,16 @@ app.get("/api/services/:sname", (req, res) => {
   });
 });
 
-app.get("/api/services", (req, res) => {
+app.get("/api/services_all", (req, res) => {
   const sql = "SELECT * FROM service";
+  db.query(sql, (err, results) => {
+    if (err) throw err;
+    res.json(results);
+  });
+});
+
+app.get("/api/services", (req, res) => {
+  const sql = "SELECT * FROM service WHERE isActive = 1";
   db.query(sql, (err, results) => {
     if (err) throw err;
     res.json(results);
@@ -67,6 +76,18 @@ app.post("/api/contact", (req, res) => {
       res.json({ success: true });
     }
   );
+});
+
+app.put("/api/services/toggle-active/:id", (req, res) => {
+  const id = req.params.id;
+  const sql = "UPDATE service SET isActive = NOT isActive WHERE service_id = ?";
+  db.query(sql, [id], (err, results) => {
+    if (err) throw err;
+    res.json({
+      success: true,
+      message: "Service status updated successfully.",
+    });
+  });
 });
 
 app.get("/api/contact/responses", (req, res) => {

@@ -30,11 +30,11 @@ const ServiceDetails = () => {
 
   return (
     <div className="flex flex-col items-center justify-center">
-      <h1>{service.service_name} </h1>
-      <p>{service.full_description} </p>
+      <h1 className="font-bold">{service.service_name} </h1>
+      <p className="m-4 p-4">{service.full_description} </p>
       <br />
       <img
-        className="size-40"
+        className="size-80 m-4 p-4"
         src={"../src/assets/images/service/" + service.image_path}
         alt={service.service_name}
       />
