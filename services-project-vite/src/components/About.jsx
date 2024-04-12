@@ -1,8 +1,7 @@
 const About = () => {
   return (
     <div>
-      <h1 className="text-center font-bold ">About Us</h1>
-
+      <h3 className="text-indigo-600 font-semibold text-center">About Us</h3>
       <div className="m-5 p-5">
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer

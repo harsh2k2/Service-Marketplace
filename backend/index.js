@@ -8,6 +8,8 @@ import sharp from "sharp";
 const app = express();
 const port = 8800;
 
+app.use(express.static("public"));
+
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

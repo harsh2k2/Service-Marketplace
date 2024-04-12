@@ -41,7 +41,7 @@ const Footer = () => {
         ))}
       </ul>
       <div className="mt-8 items-center justify-between sm:flex">
-        <div className="mt-4 sm:mt-0">&copy; 2022 All rights reserved.</div>
+        <div className="mt-4 sm:mt-0">&copy; 2024 All rights reserved.</div>
       </div>
       <style>{`
         .svg-icon path,

@@ -18,7 +18,9 @@ const ServiceCard = ({ sname }) => {
   return (
     <Link to={`/services/${service.service_name.replace(/\s+/g, "-")}`}>
       <div className="serviceCard m-4 p-4 border border-slate-950 rounded-lg flex flex-col items-center">
-        <h1>{service.service_name}</h1>
+        <h1 className="text-xl font-medium text-center text-orange-900">
+          {service.service_name}
+        </h1>
         <img
           className="size-40"
           src={
@@ -27,7 +29,7 @@ const ServiceCard = ({ sname }) => {
           // src={"src/assets/images/service/" + service.image_path}
           alt={service.service_name}
         />
-        <h1>{service.description} </h1>
+        <h1 className="text-center">{service.description} </h1>
       </div>
     </Link>
   );
