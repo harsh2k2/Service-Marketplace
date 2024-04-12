@@ -1,21 +1,31 @@
 .drop-mid {
-    width: 250px;
-    background: #fff;
-    left: -75px;
-    box-shadow: 0 0 5px 1px #c6c6c6;
-    padding: 10px;
-    border-radius: 10px;
+  width: 250px;
+  background: #fff;
+  left: -75px;
+  box-shadow: 0 0 5px 1px #c6c6c6;
+  padding: 10px;
+  border-radius: 10px;
 }
+
 .dropdown {
-    position: relative;
+  position: relative;
 }
 
 .active-tab {
-    color: #ff6347; 
-    border-bottom: 2px solid #ff6347; 
-   }
+  color: #ff6347;
+  border-bottom: 2px solid #ff6347;
+}
 
 .active-service {
-    color: #ff6347; 
-    /* border-bottom: 2px solid #ff6347;  */
-   }
+  color: #ff6347;
+  /* border-bottom: 2px solid #ff6347;  */
+}
+
+.nav-item:hover {
+  color: red;
+}
+
+
+.nav-item-service:hover {
+    color: rgb(211, 49, 49);
+  }

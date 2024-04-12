@@ -23,7 +23,7 @@ const ServiceDropdown = () => {
             <NavLink
               to={`/services/${service.service_name.replace(/\s+/g, "-")}`}
               className={(navData) =>
-                navData.isActive ? "active-service" : "none"
+                navData.isActive ? "active-service" : "nav-item-service"
               }
             >
               {service.service_name}

@@ -31,7 +31,7 @@ const Header = () => {
             <NavLink
               to="/"
               className={(navData) =>
-                navData.isActive ? "active-tab" : "none"
+                navData.isActive ? "active-tab" : "nav-item"
               }
             >
               Home
@@ -42,7 +42,7 @@ const Header = () => {
             <NavLink
               to="/about"
               className={(navData) =>
-                navData.isActive ? "active-tab" : "none"
+                navData.isActive ? "active-tab" : "nav-item"
               }
             >
               About
@@ -55,7 +55,7 @@ const Header = () => {
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             >
-              <button>Services</button>
+              <button className="nav-item">Services</button>
               {/* {isDropDownVisible && <Dropdown />} */}
               {isDropDownVisible && <ServiceDropdown />}
             </div>
@@ -65,7 +65,7 @@ const Header = () => {
             <NavLink
               to="/contact"
               className={(navData) =>
-                navData.isActive ? "active-tab" : "none"
+                navData.isActive ? "active-tab" : "nav-item"
               }
             >
               Contact
