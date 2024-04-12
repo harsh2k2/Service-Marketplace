@@ -32,11 +32,16 @@ service_name varchar(100)
 drop table service;
 
 SELECT * FROM service;
+SELECT * FROM service where isActive = 1;
+
+
+
+UPDATE service SET isActive = 0 WHERE service_id = 1;
+
+SELECT * FROM service ORDER BY service_id where isActive = 1 LIMIT 4;
 
 
 select * from contact;
-
-
 
 
 

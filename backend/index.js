@@ -119,36 +119,38 @@ const upload = multer({
 app.post("/api/services", upload.single("image"), (req, res) => {
   const { service_name, description, full_description } = req.body;
   const isActive = true;
-  const date_created = new Date().toISOString().slice(0, 10); // Get current date in YYYY-MM-DD format
+  const date_created = new Date().toISOString().slice(0, 10);
 
-  const image_path = req.file.filename; // Get the image name from the uploaded file
+  let image_path = "default_image_path.jpg"; // Default image path if no file is uploaded
 
-  // console.log("req.file.path:", req.file.path);
-  // console.log("req.file.filename:", req.file.filename);
+  if (req.file) {
+    // If a file is uploaded, process the image
+    image_path = req.file.filename; // Get the image name from the uploaded file
 
-  try {
-    sharp(req.file.path)
-      .resize(200, 200)
-      .toFile(
-        "../services-project-vite/src/assets/images/service/" +
-          "thumbnails-" +
-          image_path,
-        (err, resizeImage) => {
-          if (err) {
-            console.log(err);
-            return res
-              .status(500)
-              .json({ error: "An error occurred while resizing the image." });
-          } else {
-            console.log(resizeImage);
+    try {
+      sharp(req.file.path)
+        .resize(200, 200)
+        .toFile(
+          "../services-project-vite/src/assets/images/service/" +
+            "thumbnails-" +
+            image_path,
+          (err, resizeImage) => {
+            if (err) {
+              console.log(err);
+              return res
+                .status(500)
+                .json({ error: "An error occurred while resizing the image." });
+            } else {
+              console.log(resizeImage);
+            }
           }
-        }
-      );
-  } catch (error) {
-    console.error(error);
-    return res
-      .status(500)
-      .json({ error: "An error occurred while processing the image." });
+        );
+    } catch (error) {
+      console.error(error);
+      return res
+        .status(500)
+        .json({ error: "An error occurred while processing the image." });
+    }
   }
 
   const sql =
@@ -175,11 +177,6 @@ app.post("/api/services", upload.single("image"), (req, res) => {
     }
   );
 });
-
-// app.post("/api/upload", upload.single("image"), (req, res) => {
-//   console.log(req.file);
-//   res.json({ imageName: req.file.filename });
-// });
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);

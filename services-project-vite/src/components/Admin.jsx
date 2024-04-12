@@ -4,10 +4,22 @@ import ServiceTable from "./ServiceTable";
 
 const Admin = () => {
   return (
-    <div>
-      <ServiceListingForm />
-      <ContactResponses />
-      <ServiceTable />
+    <div className="divide-y divide-dashed">
+      <div>
+        <ServiceListingForm />
+      </div>
+
+      <br />
+
+      <div>
+        <ContactResponses />
+      </div>
+
+      <br />
+
+      <div>
+        <ServiceTable />
+      </div>
     </div>
   );
 };

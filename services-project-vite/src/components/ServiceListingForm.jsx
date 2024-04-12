@@ -107,19 +107,18 @@ const ServiceListingForm = () => {
                 />
               </div> */}
               <div>
-                <label className="font-medium">Image upload</label>
+                <label className="font-medium">Image Upload</label>
                 <input
                   type="file"
                   name="image"
                   onChange={handleFile}
                   accept="image/png, image/jpeg, image/jpg"
-                  // {...register("image", { required: true })}
+                  // {...register("Image Upload", { required: true })}
                   className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
                 />
-                {/* {errors.image && (
+                {/* {errors["Image Upload"] && (
                   <span className="text-red-500">This field is required</span>
                 )} */}
-                {/* <button onClick={handleUpload}>Upload</button> */}
               </div>
             </div>
             <div>
