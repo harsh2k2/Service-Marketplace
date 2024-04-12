@@ -1,8 +1,7 @@
-// import React from "react";
-
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useState } from "react";
 import ServiceDropdown from "./ServiceDropdown";
+import "./style.css";
 
 const Header = () => {
   const [isDropDownVisible, setIsDropDownVisible] = useState(false);
@@ -28,10 +27,26 @@ const Header = () => {
       <div className="nav-items">
         <ul className="flex text-2xl">
           <li className="p-2.5 m-2.5 cursor-pointer">
-            <Link to="/">Home</Link>
+            {/* <Link to="/">Home</Link> */}
+            <NavLink
+              to="/"
+              className={(navData) =>
+                navData.isActive ? "active-tab" : "none"
+              }
+            >
+              Home
+            </NavLink>
           </li>
           <li className="p-2.5 m-2.5 cursor-pointer">
-            <Link to="/about">About</Link>
+            {/* <Link to="/about">About</Link> */}
+            <NavLink
+              to="/about"
+              className={(navData) =>
+                navData.isActive ? "active-tab" : "none"
+              }
+            >
+              About
+            </NavLink>
           </li>
           <li className="p-2.5 m-2.5 cursor-pointer">
             {/* <Link to="/services">Services</Link> */}
@@ -46,7 +61,15 @@ const Header = () => {
             </div>
           </li>
           <li className="p-2.5 m-2.5 cursor-pointer">
-            <Link to="/contact">Contact</Link>
+            {/* <Link to="/contact">Contact</Link> */}
+            <NavLink
+              to="/contact"
+              className={(navData) =>
+                navData.isActive ? "active-tab" : "none"
+              }
+            >
+              Contact
+            </NavLink>
           </li>
         </ul>
       </div>

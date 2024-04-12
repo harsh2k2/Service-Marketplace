@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import "./style.css";
 
 const ServiceDropdown = () => {
   const [services, setServices] = useState([]);
@@ -11,13 +12,22 @@ const ServiceDropdown = () => {
   }, []);
 
   return (
-    <div className="dropdown-menu absolute z-10">
-      <ul className="bg-indigo-300">
+    <div className="dropdown-menu drop-mid absolute z-10">
+      <ul className="bg-white text-lg">
         {services.map((service) => (
           <li key={service.service_id}>
-            <Link to={`/services/${service.service_name.replace(/\s+/g, "-")}`}>
+            {/* <Link to={`/services/${service.service_name.replace(/\s+/g, "-")}`}>
               {service.service_name}
-            </Link>
+            </Link> */}
+
+            <NavLink
+              to={`/services/${service.service_name.replace(/\s+/g, "-")}`}
+              className={(navData) =>
+                navData.isActive ? "active-service" : "none"
+              }
+            >
+              {service.service_name}
+            </NavLink>
           </li>
         ))}
       </ul>
