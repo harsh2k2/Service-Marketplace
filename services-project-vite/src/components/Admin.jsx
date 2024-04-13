@@ -1,3 +1,4 @@
+import BlogForm from "./BlogForm";
 import ContactResponses from "./ContactResponses";
 import ServiceListingForm from "./ServiceListingForm";
 import ServiceTable from "./ServiceTable";
@@ -5,7 +6,7 @@ import ServiceTable from "./ServiceTable";
 const Admin = () => {
   return (
     <div className="divide-y divide-dashed">
-      <div>
+      {/* <div>
         <ServiceListingForm />
       </div>
 
@@ -19,6 +20,10 @@ const Admin = () => {
 
       <div>
         <ServiceTable />
+      </div> */}
+
+      <div>
+        <BlogForm />
       </div>
     </div>
   );

@@ -7,6 +7,7 @@ import Error from "./components/Error.jsx";
 import Footer from "./components/Footer.jsx";
 import ServiceDetails from "./components/ServiceDetails.jsx";
 import Admin from "./components/Admin.jsx";
+import Blog from "./components/Blog.jsx";
 
 const AppLayout = () => {
   return (
@@ -47,8 +48,12 @@ const appRouter = createBrowserRouter([
         path: "/admin",
         element: <Admin />,
       },
+      {
+        path: "/blog",
+        element: <Blog />,
+      },
     ],
-    // errorElement: <Error />,
+    errorElement: <Error />,
   },
 ]);
 

@@ -61,6 +61,17 @@ const Header = () => {
             </div>
           </li>
           <li className="p-2.5 m-2.5 cursor-pointer">
+            {/* <Link to="/about">About</Link> */}
+            <NavLink
+              to="/blog"
+              className={(navData) =>
+                navData.isActive ? "active-tab" : "nav-item"
+              }
+            >
+              Blog
+            </NavLink>
+          </li>
+          <li className="p-2.5 m-2.5 cursor-pointer">
             {/* <Link to="/contact">Contact</Link> */}
             <NavLink
               to="/contact"
