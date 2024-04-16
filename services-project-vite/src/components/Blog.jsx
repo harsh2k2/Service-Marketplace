@@ -1,19 +1,30 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import BlogCard from "./BlogCard";
+import { Link } from "react-router-dom";
 
 const Blog = () => {
-  //   useEffect(() => {
-  //     fetch("http://localhost:8800/api/services/firstfour")
-  //       .then((response) => response.json())
-  //       .then((data) => setServices(data));
-  //   }, []);
+  const [blogs, setBlogs] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:8800/api/blog")
+      .then((response) => response.json())
+      .then((data) => setBlogs(data));
+  }, []);
 
   return (
-    <div>
-      <BlogCard />
-      <BlogCard />
-      <BlogCard />
-      <BlogCard />
+    <div className="flex flex-wrap justify-center">
+      {blogs.map((blog) => (
+        // <Link
+        //   key={blog.blog_id}
+        //   to={`/blog/${encodeURIComponent(blog.blog_name).replace(
+        //     /\s+/g,
+        //     "-"
+        //   )}`}
+        // >
+        <Link key={blog.blog_id} to={`/blog/${blog.slug}`}>
+          <BlogCard blogName={blog.blog_name} blogImage={blog.blog_image} />
+        </Link>
+      ))}
     </div>
   );
 };
