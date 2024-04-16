@@ -100,9 +100,7 @@ app.get("/api/contact/responses", (req, res) => {
   });
 });
 
-// const img_date = Date.now();
-
-const storage = multer.diskStorage({
+const service_storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "../services-project-vite/src/assets/images/service");
   },
@@ -114,11 +112,11 @@ const storage = multer.diskStorage({
   },
 });
 
-const upload = multer({
-  storage: storage,
+const service_upload = multer({
+  storage: service_storage,
 });
 
-app.post("/api/services", upload.single("image"), (req, res) => {
+app.post("/api/services", service_upload.single("image"), (req, res) => {
   const { service_name, description, full_description } = req.body;
   const isActive = true;
   const date_created = new Date().toISOString().slice(0, 10);
@@ -175,6 +173,52 @@ app.post("/api/services", upload.single("image"), (req, res) => {
           .json({ error: "An error occurred while inserting the service." });
       } else {
         res.json({ success: true, message: "Service added successfully." });
+      }
+    }
+  );
+});
+
+const blog_storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "../services-project-vite/src/assets/images/blog");
+  },
+  filename: (req, file, cb) => {
+    cb(
+      null,
+      file.fieldname + "_" + Date.now() + path.extname(file.originalname)
+    );
+  },
+});
+
+const blog_upload = multer({
+  storage: blog_storage,
+});
+
+app.post("/api/blog", blog_upload.single("image"), (req, res) => {
+  const { blog_name, full_description } = req.body;
+  const isActive = true;
+  const date_created = new Date().toISOString().slice(0, 10);
+
+  let blog_image = "default_image_path.jpg"; // Default image path if no file is uploaded
+
+  if (req.file) {
+    // If a file is uploaded, use the file name
+    blog_image = req.file.filename;
+  }
+
+  const sql =
+    "INSERT INTO blog (blog_name, full_description, blog_image, isActive, date_created) VALUES (?, ?, ?, ?, ?)";
+  db.query(
+    sql,
+    [blog_name, full_description, blog_image, isActive, date_created],
+    (err, results) => {
+      if (err) {
+        console.log(err);
+        res
+          .status(500)
+          .json({ error: "An error occurred while inserting the blog." });
+      } else {
+        res.json({ success: true, message: "Blog added successfully." });
       }
     }
   );
