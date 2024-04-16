@@ -8,6 +8,7 @@ import Footer from "./components/Footer.jsx";
 import ServiceDetails from "./components/ServiceDetails.jsx";
 import Admin from "./components/Admin.jsx";
 import Blog from "./components/Blog.jsx";
+import BlogDetails from "./components/BlogDetails.jsx";
 
 const AppLayout = () => {
   return (
@@ -51,6 +52,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/blog",
         element: <Blog />,
+      },
+      {
+        path: "/blog/:bname",
+        element: <BlogDetails />,
       },
     ],
     errorElement: <Error />,

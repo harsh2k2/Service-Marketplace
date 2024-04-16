@@ -48,6 +48,16 @@ app.get("/api/services/:sname", (req, res) => {
   });
 });
 
+app.get("/api/blog/:bname", (req, res) => {
+  const sql = "SELECT * FROM blog WHERE blog_name = ?";
+  const bname = decodeURIComponent(req.params.bname).replace(/-/g, " ");
+
+  db.query(sql, [bname], (err, results) => {
+    if (err) throw err;
+    res.json(results[0]);
+  });
+});
+
 app.get("/api/services_all", (req, res) => {
   const sql = "SELECT * FROM service";
   db.query(sql, (err, results) => {
@@ -199,11 +209,36 @@ app.post("/api/blog", blog_upload.single("image"), (req, res) => {
   const isActive = true;
   const date_created = new Date().toISOString().slice(0, 10);
 
-  let blog_image = "default_image_path.jpg"; // Default image path if no file is uploaded
+  let blog_image = "default_blog_image.jpg"; // Default image path if no file is uploaded
 
   if (req.file) {
-    // If a file is uploaded, use the file name
-    blog_image = req.file.filename;
+    // If a file is uploaded, process the image
+    blog_image = req.file.filename; // Get the image name from the uploaded file
+
+    try {
+      sharp(req.file.path)
+        .resize(200, 200)
+        .toFile(
+          "../services-project-vite/src/assets/images/service/" +
+            "thumbnails-" +
+            blog_image,
+          (err, resizeImage) => {
+            if (err) {
+              console.log(err);
+              return res
+                .status(500)
+                .json({ error: "An error occurred while resizing the image." });
+            } else {
+              console.log(resizeImage);
+            }
+          }
+        );
+    } catch (error) {
+      console.error(error);
+      return res
+        .status(500)
+        .json({ error: "An error occurred while processing the image." });
+    }
   }
 
   const sql =
