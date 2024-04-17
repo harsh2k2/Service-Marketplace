@@ -21,6 +21,7 @@ const BlogForm = () => {
 
     formData.append("image", file);
     formData.append("blog_name", data["Blog Title"]);
+    formData.append("author", data["Author Name"]);
     // formData.append("full_description", data["Blog Description"]);
     formData.append("full_description", data["full_description"]);
 
@@ -71,7 +72,20 @@ const BlogForm = () => {
                 )}
               </div>
             </div>
-
+            <div className="flex flex-col items-center gap-y-5 gap-x-6 [&>*]:w-full sm:flex-row">
+              <div className="w-full">
+                <label className="font-medium">Author Name</label>
+                <input
+                  type="text"
+                  placeholder="Author Name"
+                  {...register("Author Name", { required: true })}
+                  className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
+                />
+                {errors["Author Name"] && (
+                  <span className="text-red-500">This field is required</span>
+                )}
+              </div>
+            </div>
             <div className="flex flex-col items-center gap-y-5 gap-x-6 [&>*]:w-full sm:flex-row">
               <div className="w-full">
                 <label className="font-medium">Image Upload</label>

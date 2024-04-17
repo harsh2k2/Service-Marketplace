@@ -86,7 +86,7 @@ router.put("/api/blog/toggle-active/:id", (req, res) => {
 });
 
 router.post("/api/blog", blog_upload.single("image"), (req, res) => {
-  const { blog_name, full_description } = req.body;
+  const { blog_name, full_description, author } = req.body;
   const isActive = true;
   const date_created = new Date().toISOString().slice(0, 10);
 
@@ -124,10 +124,10 @@ router.post("/api/blog", blog_upload.single("image"), (req, res) => {
 
   // First, insert the blog post without the slug
   const sqlInsert =
-    "INSERT INTO blog (blog_name, blog_image, full_description, isActive, date_created) VALUES (?, ?, ?, ?, ?)";
+    "INSERT INTO blog (blog_name,author, blog_image, full_description, isActive, date_created) VALUES (?,?, ?, ?, ?, ?)";
   db.query(
     sqlInsert,
-    [blog_name, blog_image, full_description, isActive, date_created],
+    [blog_name, author, blog_image, full_description, isActive, date_created],
     (err, results) => {
       if (err) {
         console.log(err);

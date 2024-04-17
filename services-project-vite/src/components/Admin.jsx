@@ -7,7 +7,7 @@ import ServiceTable from "./ServiceTable";
 const Admin = () => {
   return (
     <div className="divide-y divide-dashed">
-      {/* <div>
+      <div>
         <ContactResponses />
       </div>
       <br />
@@ -20,7 +20,7 @@ const Admin = () => {
 
       <div>
         <ServiceTable />
-      </div> */}
+      </div>
 
       <div>
         <BlogForm />
@@ -28,9 +28,9 @@ const Admin = () => {
 
       <br />
 
-      {/* <div>
+      <div>
         <BlogTable />
-      </div> */}
+      </div>
     </div>
   );
 };
