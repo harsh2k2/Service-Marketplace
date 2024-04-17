@@ -1,5 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 const BlogForm = () => {
   const {
@@ -7,14 +9,20 @@ const BlogForm = () => {
     handleSubmit,
     formState: { errors },
     reset,
+    setValue,
   } = useForm();
 
+  // State to hold the editor data
+  const [editorData, setEditorData] = useState("");
+
   const onSubmit = (data) => {
+    console.log(data);
     const formData = new FormData();
 
     formData.append("image", file);
     formData.append("blog_name", data["Blog Title"]);
-    formData.append("full_description", data["Blog Description"]);
+    // formData.append("full_description", data["Blog Description"]);
+    formData.append("full_description", data["full_description"]);
 
     fetch("http://localhost:8800/api/blog", {
       method: "POST",
@@ -77,7 +85,7 @@ const BlogForm = () => {
                 )} */}
               </div>
             </div>
-            <div>
+            {/* <div>
               <label className="font-medium">Blog Description</label>
               <textarea
                 placeholder="Blog Description"
@@ -85,6 +93,32 @@ const BlogForm = () => {
                 className="w-full mt-2 h-36 px-3 py-2 resize-none appearance-none bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
               ></textarea>
               {errors["Blog Description"] && (
+                <span className="text-red-500">This field is required</span>
+              )}
+            </div> */}
+
+            <div>
+              <label className="font-medium">Blog Description</label>
+              <CKEditor
+                editor={ClassicEditor}
+                data={editorData}
+                onInit={(editor) => {
+                  // You can store the "editor" and use when it is needed.
+                  console.log("Editor is ready to use!", editor);
+                }}
+                onChange={(event, editor) => {
+                  const data = editor.getData();
+                  setEditorData(data);
+                  setValue("full_description", data); // Update the form value
+                }}
+                onBlur={(event, editor) => {
+                  console.log("Blur.", editor);
+                }}
+                onFocus={(event, editor) => {
+                  console.log("Focus.", editor);
+                }}
+              />
+              {errors["full_description"] && (
                 <span className="text-red-500">This field is required</span>
               )}
             </div>

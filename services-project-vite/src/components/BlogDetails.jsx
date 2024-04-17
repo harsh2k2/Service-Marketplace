@@ -28,7 +28,13 @@ const BlogDetails = () => {
         src={`../src/assets/images/blog/${blog.blog_image}`}
         alt={blog.blog_name}
       />
-      <p className="text-gray-700 text-lg">{blog.full_description}</p>
+      {/* <p className="text-gray-700 text-lg">{blog.full_description}</p> */}
+
+      {/* Using dangerouslySetInnerHTML to display the formatted content */}
+      <div
+        className="text-gray-700 text-lg"
+        dangerouslySetInnerHTML={{ __html: blog.full_description }}
+      />
     </div>
   );
 };
