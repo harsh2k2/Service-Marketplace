@@ -9,6 +9,7 @@ import ServiceDetails from "./components/ServiceDetails.jsx";
 import Admin from "./components/Admin.jsx";
 import Blog from "./components/Blog.jsx";
 import BlogDetails from "./components/BlogDetails.jsx";
+import PasswordProtection from "./components/PasswordProtection.jsx";
 
 const AppLayout = () => {
   return (
@@ -45,10 +46,7 @@ const appRouter = createBrowserRouter([
         path: "/contact/service/:serviceName",
         element: <Contact />,
       },
-      {
-        path: "/admin",
-        element: <Admin />,
-      },
+
       {
         path: "/blog",
         element: <Blog />,
@@ -59,6 +57,11 @@ const appRouter = createBrowserRouter([
       },
     ],
     errorElement: <Error />,
+  },
+  {
+    path: "/admin",
+    // element: <Admin />,
+    element: <PasswordProtection />,
   },
 ]);
 
