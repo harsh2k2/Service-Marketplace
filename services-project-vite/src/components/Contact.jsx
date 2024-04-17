@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Contact = () => {
   const initialValues = { fullname: "", email: "", phone: "", message: "" };
@@ -53,8 +54,27 @@ const Contact = () => {
         ...formValues,
         service_name: formValues.service,
       };
-      await insertContactData(dataToSend);
-      setIsSubmit(true);
+      try {
+        await insertContactData(dataToSend);
+        setIsSubmit(true);
+        // Reset the form values to initial state
+        setFormValues(initialValues);
+        // Display a SweetAlert message
+        Swal.fire({
+          title: "Success!",
+          text: "Your form has been submitted successfully.",
+          icon: "success",
+          confirmButtonText: "OK",
+        });
+      } catch (error) {
+        console.error("Error submitting form:", error);
+        Swal.fire({
+          title: "Error!",
+          text: "There was an error submitting your form.",
+          icon: "error",
+          confirmButtonText: "OK",
+        });
+      }
     }
   };
 
@@ -193,7 +213,7 @@ const Contact = () => {
               <div>
                 <label className="font-medium">Email</label>
                 <input
-                  type="email"
+                  type="text"
                   name="email"
                   className={`w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border ${
                     formErrors.email
@@ -241,9 +261,9 @@ const Contact = () => {
                 Submit
               </button>
             </form>
-            {Object.keys(formErrors).length === 0 && isSubmit && (
+            {/* {Object.keys(formErrors).length === 0 && isSubmit && (
               <p className="text-green-600">Form submitted successfully</p>
-            )}
+            )} */}
           </div>
         </div>
       </div>

@@ -33,6 +33,7 @@ const BlogForm = () => {
         if (data.success) {
           console.log("Blog added successfully.");
           reset(); // Reset form or navigate to another page
+          setEditorData("");
         } else {
           console.error("An error occurred while adding the blog.");
         }
@@ -70,6 +71,7 @@ const BlogForm = () => {
                 )}
               </div>
             </div>
+
             <div className="flex flex-col items-center gap-y-5 gap-x-6 [&>*]:w-full sm:flex-row">
               <div className="w-full">
                 <label className="font-medium">Image Upload</label>
