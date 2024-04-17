@@ -15,6 +15,14 @@ router.get("/api/blog", (req, res) => {
   });
 });
 
+router.get("/api/blog_all", (req, res) => {
+  const sql = "SELECT * FROM blog";
+  db.query(sql, (err, results) => {
+    if (err) throw err;
+    res.json(results);
+  });
+});
+
 // router.get("/api/blog/:bname", (req, res) => {
 //   const sql = "SELECT * FROM blog WHERE blog_name = ?";
 //   // const bname = decodeURIComponent(req.params.bname).replace(/-/g, " ");
@@ -58,6 +66,23 @@ const blog_storage = multer.diskStorage({
 
 const blog_upload = multer({
   storage: blog_storage,
+});
+
+router.put("/api/blog/toggle-active/:id", (req, res) => {
+  const id = req.params.id;
+  const sql = "UPDATE blog SET isActive = NOT isActive WHERE blog_id = ?";
+  db.query(sql, [id], (err, results) => {
+    if (err) {
+      console.error(err);
+      return res
+        .status(500)
+        .json({ error: "An error occurred while updating the blog status." });
+    }
+    res.json({
+      success: true,
+      message: "Blog status updated successfully.",
+    });
+  });
 });
 
 // router.post("/api/blog", blog_upload.single("image"), (req, res) => {

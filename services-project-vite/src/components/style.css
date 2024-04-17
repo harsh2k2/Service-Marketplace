@@ -29,3 +29,13 @@
 .nav-item-service:hover {
     color: rgb(211, 49, 49);
   }
+
+
+
+  /* BlogTable.css */
+.description-cell {
+  max-width: 200px; /* Adjust this value based on your layout */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+ }

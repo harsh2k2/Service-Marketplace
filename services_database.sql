@@ -47,7 +47,7 @@ select * from contact;
 create table blog(
 blog_id int primary key auto_increment,
 blog_name TEXT,
-slug VARCHAR(255);
+slug VARCHAR(255),
 blog_image varchar(255),
 full_description text,
 isActive bool,
@@ -55,6 +55,8 @@ date_created date
 );
 
 select * from blog;
+
+SELECT * FROM blog WHERE slug ='aaaaaaaaa';
 
 drop table blog;
 
