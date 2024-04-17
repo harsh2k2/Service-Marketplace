@@ -48,8 +48,9 @@ create table blog(
 blog_id int primary key auto_increment,
 blog_name TEXT,
 slug VARCHAR(255),
+author varchar(100),
 blog_image varchar(255),
-full_description text,
+full_description LONGTEXT,
 isActive bool,
 date_created date
 );
