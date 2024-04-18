@@ -1,13 +1,16 @@
 import express from "express";
 import cors from "cors";
 import { db } from "./db.js";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 import servicesRoutes from "./routes/services.js";
 import blogRoutes from "./routes/blog.js";
 import contactRoutes from "./routes/contact.js";
 
 const app = express();
-const port = 8800;
+const port = process.env.PORT || 8800;
 
 app.use(express.static("public"));
 
