@@ -24,9 +24,9 @@ const ServiceCard = ({ sname }) => {
         <img
           className="size-40"
           src={
-            "src/assets/images/service/" + "thumbnails-" + service.image_path
+            "http://localhost:8800/assets/service/thumbnails/" +
+            service.image_path
           }
-          // src={"src/assets/images/service/" + service.image_path}
           alt={service.service_name}
         />
         <h1 className="text-center">{service.description} </h1>

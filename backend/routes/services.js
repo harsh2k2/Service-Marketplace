@@ -61,7 +61,7 @@ router.get("/api/services", (req, res) => {
 
 const service_storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "../services-project-vite/src/assets/images/service");
+    cb(null, "public/assets/service/images");
   },
   filename: (req, file, cb) => {
     cb(
@@ -90,9 +90,7 @@ router.post("/api/services", service_upload.single("image"), (req, res) => {
       sharp(req.file.path)
         .resize(200, 200)
         .toFile(
-          "../services-project-vite/src/assets/images/service/" +
-            "thumbnails-" +
-            image_path,
+          "public/assets/service/thumbnails/" + image_path,
           (err, resizeImage) => {
             if (err) {
               console.log(err);

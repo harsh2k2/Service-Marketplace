@@ -35,7 +35,9 @@ const ServiceDetails = () => {
       <br />
       <img
         className="size-80 m-4 p-4"
-        src={"../src/assets/images/service/" + service.image_path}
+        src={
+          "http://localhost:8800/assets/service/images/" + service.image_path
+        }
         alt={service.service_name}
       />
 

@@ -54,7 +54,7 @@ router.get("/api/blog/:slug", (req, res) => {
 
 const blog_storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "../services-project-vite/src/assets/images/blog");
+    cb(null, "public/assets/blog/images");
   },
   filename: (req, file, cb) => {
     cb(
@@ -100,9 +100,7 @@ router.post("/api/blog", blog_upload.single("image"), (req, res) => {
       sharp(req.file.path)
         .resize(200, 200)
         .toFile(
-          "../services-project-vite/src/assets/images/service/" +
-            "thumbnails-" +
-            blog_image,
+          "public/assets/blog/thumbnails/" + blog_image,
           (err, resizeImage) => {
             if (err) {
               console.log(err);

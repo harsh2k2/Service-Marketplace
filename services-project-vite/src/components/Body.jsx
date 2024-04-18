@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ServiceCard from "./ServiceCard";
 
-import Banner from "../assets/images/banner-background.jpg";
+// import Banner from "../assets/images/banner-background.jpg";
 
 const Body = () => {
   const [services, setServices] = useState([]);
@@ -14,7 +14,8 @@ const Body = () => {
 
   return (
     <div>
-      <img src={Banner} alt="Banner" />
+      {/* <img src={Banner} alt="Banner" /> */}
+      <img src="./assets/banner-background.jpg" alt="Banner" />
 
       <h1 className="text-3xl font-bold text-center my-4 text-orange-950">
         Our Services

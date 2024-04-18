@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 const BlogDetails = () => {
-  const { bname } = useParams();
   const [blog, setBlog] = useState({});
 
   const { slug } = useParams();
@@ -37,7 +36,7 @@ const BlogDetails = () => {
       <br />
       <img
         className="w-full h-64 object-cover mb-4"
-        src={`../src/assets/images/blog/${blog.blog_image}`}
+        src={`http://localhost:8800/assets/blog/images/${blog.blog_image}`}
         alt={blog.blog_name}
       />
       {/* <p className="text-gray-700 text-lg">{blog.full_description}</p> */}

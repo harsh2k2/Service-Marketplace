@@ -3,9 +3,7 @@ const BlogCard = ({ blogName, blogImage }) => {
     <div className="blogCard bg-white shadow-md rounded-lg overflow-hidden max-w-sm m-2">
       <img
         className="w-full h-48 object-cover"
-        src={`../src/assets/images/blog/${blogImage}`}
-        // src={`../src/assets/images/blog/thumbnails-${blogImage}`}
-
+        src={`http://localhost:8800/assets/blog/thumbnails/${blogImage}`}
         alt={blogName}
       />
       <div className="p-4">
