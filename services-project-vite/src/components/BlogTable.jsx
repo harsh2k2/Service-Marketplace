@@ -11,7 +11,9 @@ const BlogTable = () => {
 
   const fetchBlogs = async () => {
     try {
-      const response = await axios.get(`${import.meta.env.VITE_APP_BACKEND_URL}/api/blog_all`);
+      const response = await axios.get(
+        `${import.meta.env.VITE_APP_BACKEND_URL}/api/blog_all`
+      );
       setBlogs(response.data);
     } catch (error) {
       console.error("Failed to fetch blogs:", error);
@@ -20,7 +22,9 @@ const BlogTable = () => {
 
   const toggleActiveStatus = async (id) => {
     try {
-      await axios.put(`${import.meta.env.VITE_APP_BACKEND_URL}/api/blog/toggle-active/${id}`);
+      await axios.put(
+        `${import.meta.env.VITE_APP_BACKEND_URL}/api/blog/toggle-active/${id}`
+      );
       fetchBlogs(); // Refresh the list after updating the status
     } catch (error) {
       console.error("Failed to toggle blog active status:", error);

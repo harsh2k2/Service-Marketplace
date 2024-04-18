@@ -34,7 +34,7 @@
 
   /* BlogTable.css */
 .description-cell {
-  max-width: 200px; /* Adjust this value based on your layout */
+  max-width: 200px; 
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

@@ -39,11 +39,11 @@ const appRouter = createBrowserRouter([
         element: <Contact />,
       },
       {
-        path: "/services/:sname",
+        path: "/:sname",
         element: <ServiceDetails />,
       },
       {
-        path: "/contact/service/:serviceName",
+        path: "/contact/:serviceName",
         element: <Contact />,
       },
 

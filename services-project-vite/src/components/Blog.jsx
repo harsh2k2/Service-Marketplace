@@ -22,7 +22,11 @@ const Blog = () => {
         //   )}`}
         // >
         <Link key={blog.blog_id} to={`/blog/${blog.slug}`}>
-          <BlogCard blogName={blog.blog_name} blogImage={blog.blog_image} />
+          <BlogCard
+            blogName={blog.blog_name}
+            blogImage={blog.blog_image}
+            blogContent={blog.full_description}
+          />
         </Link>
       ))}
     </div>
