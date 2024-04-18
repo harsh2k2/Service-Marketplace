@@ -25,7 +25,7 @@ const BlogForm = () => {
     // formData.append("full_description", data["Blog Description"]);
     formData.append("full_description", data["full_description"]);
 
-    fetch("http://localhost:8800/api/blog", {
+    fetch(`${import.meta.env.VITE_APP_BACKEND_URL}/api/blog`, {
       method: "POST",
       body: formData,
     })

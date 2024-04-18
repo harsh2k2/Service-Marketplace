@@ -16,7 +16,7 @@ const Contact = () => {
   console.log("Selected service from URL:", selectedService);
 
   useEffect(() => {
-    fetch("http://localhost:8800/api/services")
+    fetch(`${import.meta.env.VITE_APP_BACKEND_URL}/api/services`)
       .then((response) => response.json())
       .then((data) => {
         setServices(data);
@@ -131,7 +131,7 @@ const Contact = () => {
   const insertContactData = async (data) => {
     console.log("Data being sent:", data);
     try {
-      const response = await fetch(`http://localhost:8800/api/contact`, {
+      const response = await fetch(`${import.meta.env.VITE_APP_BACKEND_URL}/api/contact`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

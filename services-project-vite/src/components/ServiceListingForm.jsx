@@ -22,7 +22,7 @@ const ServiceListingForm = () => {
     // formData.append("date_created", new Date().toISOString().slice(0, 10));
 
     // Send the FormData instance to the server
-    fetch("http://localhost:8800/api/services", {
+    fetch(`${import.meta.env.VITE_APP_BACKEND_URL}/api/services`, {
       method: "POST",
       body: formData,
     })

@@ -20,7 +20,7 @@ const ServiceDetails = () => {
 
   useEffect(() => {
     console.log("Fetching service details for name:", sname);
-    fetch(`http://localhost:8800/api/services/${encodeURIComponent(sname)}`)
+    fetch(`${import.meta.env.VITE_APP_BACKEND_URL}/api/services/${encodeURIComponent(sname)}`)
       .then((response) => response.json())
       .then((data) => {
         console.log("Service details:", data);
@@ -36,7 +36,7 @@ const ServiceDetails = () => {
       <img
         className="size-80 m-4 p-4"
         src={
-          "http://localhost:8800/assets/service/images/" + service.image_path
+          `${import.meta.env.VITE_APP_BACKEND_URL}/assets/service/images/` + service.image_path
         }
         alt={service.service_name}
       />

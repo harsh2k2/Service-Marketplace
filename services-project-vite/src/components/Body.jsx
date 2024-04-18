@@ -7,7 +7,7 @@ const Body = () => {
   const [services, setServices] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8800/api/services/firstfour")
+    fetch(`${import.meta.env.VITE_APP_BACKEND_URL}/api/services/firstfour`)
       .then((response) => response.json())
       .then((data) => setServices(data));
   }, []);

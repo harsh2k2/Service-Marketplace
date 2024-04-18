@@ -6,7 +6,7 @@ const Blog = () => {
   const [blogs, setBlogs] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8800/api/blog")
+    fetch(`${import.meta.env.VITE_APP_BACKEND_URL}/api/blog`)
       .then((response) => response.json())
       .then((data) => setBlogs(data));
   }, []);

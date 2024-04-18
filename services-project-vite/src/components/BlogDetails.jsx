@@ -6,7 +6,7 @@ const BlogDetails = () => {
 
   const { slug } = useParams();
   useEffect(() => {
-    fetch(`http://localhost:8800/api/blog/${slug}`)
+    fetch(`${import.meta.env.VITE_APP_BACKEND_URL}/api/blog/${slug}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -36,7 +36,9 @@ const BlogDetails = () => {
       <br />
       <img
         className="w-full h-64 object-cover mb-4"
-        src={`http://localhost:8800/assets/blog/images/${blog.blog_image}`}
+        src={`${import.meta.env.VITE_APP_BACKEND_URL}/assets/blog/images/${
+          blog.blog_image
+        }`}
         alt={blog.blog_name}
       />
       {/* <p className="text-gray-700 text-lg">{blog.full_description}</p> */}

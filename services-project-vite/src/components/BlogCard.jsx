@@ -3,7 +3,9 @@ const BlogCard = ({ blogName, blogImage }) => {
     <div className="blogCard bg-white shadow-md rounded-lg overflow-hidden max-w-sm m-2">
       <img
         className="w-full h-48 object-cover"
-        src={`http://localhost:8800/assets/blog/thumbnails/${blogImage}`}
+        src={`${
+          import.meta.env.VITE_APP_BACKEND_URL
+        }/assets/blog/thumbnails/${blogImage}`}
         alt={blogName}
       />
       <div className="p-4">

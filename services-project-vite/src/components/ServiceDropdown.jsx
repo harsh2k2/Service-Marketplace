@@ -6,7 +6,7 @@ const ServiceDropdown = () => {
   const [services, setServices] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8800/api/services")
+    fetch(`${import.meta.env.VITE_APP_BACKEND_URL}/api/services`)
       .then((response) => response.json())
       .then((data) => setServices(data));
   }, []);

@@ -11,7 +11,7 @@ const ServiceTable = () => {
   const fetchServices = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8800/api/services_all"
+        `${import.meta.env.VITE_APP_BACKEND_URL}/api/services_all`
       );
       setServices(response.data);
     } catch (error) {
@@ -21,7 +21,7 @@ const ServiceTable = () => {
 
   const toggleActiveStatus = async (id) => {
     try {
-      await axios.put(`http://localhost:8800/api/services/toggle-active/${id}`);
+      await axios.put(`${import.meta.env.VITE_APP_BACKEND_URL}/api/services/toggle-active/${id}`);
       fetchServices(); // Refresh the list after updating the status
     } catch (error) {
       console.error("Failed to toggle service active status:", error);

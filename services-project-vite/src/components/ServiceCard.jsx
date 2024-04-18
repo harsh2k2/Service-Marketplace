@@ -6,7 +6,11 @@ const ServiceCard = ({ sname }) => {
   const [service, setService] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:8800/api/services/${encodeURIComponent(sname)}`)
+    fetch(
+      `${
+        import.meta.env.VITE_APP_BACKEND_URL
+      }/api/services/${encodeURIComponent(sname)}`
+    )
       .then((response) => response.json())
       .then((data) => setService(data));
   }, [sname]);
@@ -24,8 +28,9 @@ const ServiceCard = ({ sname }) => {
         <img
           className="size-40"
           src={
-            "http://localhost:8800/assets/service/thumbnails/" +
-            service.image_path
+            `${
+              import.meta.env.VITE_APP_BACKEND_URL
+            }/assets/service/thumbnails/` + service.image_path
           }
           alt={service.service_name}
         />

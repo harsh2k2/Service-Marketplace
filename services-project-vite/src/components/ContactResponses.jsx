@@ -4,7 +4,7 @@ const ContactResponses = () => {
   const [responses, setResponses] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8800/api/contact/responses")
+    fetch(`${import.meta.env.VITE_APP_BACKEND_URL}/api/contact/responses`)
       .then((response) => response.json())
       .then((data) => setResponses(data));
   }, []);
