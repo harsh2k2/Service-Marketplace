@@ -20,7 +20,7 @@ const ServiceCard = ({ sname }) => {
   }
 
   return (
-    <Link to={`/services/${service.service_name.replace(/\s+/g, "-")}`}>
+    <Link to={`/${service.service_name.replace(/\s+/g, "-")}`}>
       <div className="serviceCard m-4 p-4 border border-slate-950 rounded-lg flex flex-col items-center">
         <h1 className="text-xl font-medium text-center text-orange-900">
           {service.service_name}
