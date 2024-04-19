@@ -14,9 +14,13 @@ import PasswordProtection from "./components/PasswordProtection.jsx";
 const AppLayout = () => {
   return (
     <div className="app">
-      <Header />
+      <div className="app-header">
+        <Header />
+      </div>
       <Outlet />
-      <Footer />
+      <div className="footer">
+        <Footer />
+      </div>
     </div>
   );
 };

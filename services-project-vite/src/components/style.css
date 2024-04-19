@@ -39,3 +39,15 @@
   text-overflow: ellipsis;
   white-space: nowrap;
  }
+
+
+ /* header */
+ .app-header{
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+ }
+
+ .app{
+  overflow: hidden;
+ }
