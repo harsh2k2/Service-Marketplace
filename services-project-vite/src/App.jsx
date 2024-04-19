@@ -60,8 +60,8 @@ const appRouter = createBrowserRouter([
   },
   {
     path: "/admin",
-    element: <Admin />,
-    // element: <PasswordProtection />,
+    // element: <Admin />,
+    element: <PasswordProtection />,
   },
 ]);
 
