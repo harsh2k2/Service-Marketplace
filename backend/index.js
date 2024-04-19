@@ -23,6 +23,10 @@ app.use(servicesRoutes);
 app.use(blogRoutes);
 app.use(contactRoutes);
 
+app.get("/", (req, res) => {
+  res.send("Welcome to the home page!");
+});
+
 // Connect to MySQL
 db.connect((err) => {
   if (err) throw err;
