@@ -15,7 +15,11 @@ const Body = () => {
   return (
     <div>
       {/* <img src={Banner} alt="Banner" /> */}
-      <img src="./assets/banner-background.jpg" alt="Banner" />
+      <img
+        className="home-banner"
+        src="./assets/banner-background.jpg"
+        alt="Banner"
+      />
 
       <h1 className="text-3xl font-bold text-center my-4 text-orange-950">
         Our Services
